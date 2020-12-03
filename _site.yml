@@ -22,7 +22,7 @@ navbar:
     - icon: fa-youtube fa-lg
       href: https://www.youtube.com
     - icon: fa-github fa-lg
-      href: https://github.com/Lin322/p8105_final_prj
+      href: https://github.com/Lin322/final_prj
 output:
   html_document: 
     theme: journal
