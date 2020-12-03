@@ -1,0 +1,28 @@
+name: "P8105 Final Website"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "About"
+      href: about.html
+    - text: "Overview"
+      href: overview.html
+    - text: "Related Work"
+      menu:
+      - text: "Injuries by body parts"
+        href: bodyparts.html
+      - text: "Injuries by race"
+        href: race.html
+    - text: "Regression Analysis"
+      href: regression.html
+    - text: "Report"
+      href: report.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<fengl3271@gmail.com>
+    - icon: fa-youtube fa-lg
+      href: https://www.youtube.com
+    - icon: fa-github fa-lg
+      href: https://github.com/Lin322/p8105_final_prj
+output:
+  html_document: 
+    theme: journal

@@ -1,0 +1,70 @@
+ ---
+title: "Consumer product-related injuries in the United States"
+output: github_document
+---
+
+## Group Member:
+
+* Lin Feng (LF2649)
+* Eric Sun (ES3201)
+* Elizabeth Park (EP2899)
+* Daniel Ojeranti (DO2381)
+
+## The motivation for this project
+
+Product-related injuries does not seem to be uncommon in everyday life. Annually, these product related injuries account for approximately 29% of unintentional injury deaths. We want to investigate the product-related injuries in a relatively large scale and visualize the results in a clear and understandable way for general public, and provide a guideline for prevent further injuries in daily life. 
+
+## The anticipated data sources
+
+We plan to use data from [National Electronic Injury Surveillance System (NEISSS)](https://www.cpsc.gov/Research--Statistics/NEISS-Injury-Data/) to invistigate the risk of consumer product-related injuries occurring in the United States. NEISS is operated by United States Consumer Product Safety Commission (CPSC) who conducted the statistically valid injury surveillance for more than 45 years. 
+
+The dataset we adopted is the NEISS data from 2013 to 2017 as "injuries", together with a product code lookup table as "products" and the population of the US by age, sex, and year as "population". The whole dataset is also available [here](https://github.com/hadley/neiss). 
+ 
+
+```{r}
+library(neiss)
+```
+
+
+```{r}
+data("injuries")
+data("population")
+data("products")
+head(population)
+head(injuries)
+head(products)
+```
+
+## The intended final products
+
+The intended final product will be a website contains the descriptive information and visualization we got from NEISS data. We plan to add some text descriptions with inline codes in the index page to show the motivation for this project, a brief introduction to the NEISS dataset, the general results of product-related injuries and other necessary information. Plots and tables will be inserted within texts to give a straight-forward display. We expect several other pages connected to the index page and will display the key results we found in more details. The linkage to NEISS website the brief introduction to group member will be added in the home page.  
+
+
+## The planned analyses / visualizations / coding challenges
+
+We will firstly import and tidy it. Then we are going to look at the distribution of injuries related to different categories of products, giving a descriptive summary of the size and structure of the dataset. After the general analysis, we will try to find some special pattern or unusual distribution within the dataset. For example, we want to know which category of product is related to the highest probability of injury, or which age range is the most vulnerable to product-related injuries.  
+
+Visualization will be achieved via both general plots and interactive plots. We will choose the most appropriate plot form for each result. If applicable, we prefer interactive plot to general plot. 
+
+The possible coding challenges could be connected the three datasets together for comprehensive analysis, because there is no common columns can be used for join. 
+
+
+## The planned timeline
+
+* Nov 7, 2020. 	Draft proposal
+* Nov 10-13	Project review meeting with TA
+* Nov 16-22	Clean and analyze the data; achieve visualization and description
+* Nov 23-Dec 4	Build website; Written report giving detailed project description
+* Dec 10	“In class” discussion of projects
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
