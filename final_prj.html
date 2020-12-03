@@ -11,7 +11,7 @@
 
 
 
-<title>Regression analysis</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,9 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -253,69 +250,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -323,16 +257,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -406,17 +330,98 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore"><strong>Regression analysis</strong></h1>
 
 </div>
 
 
-
-
-
-
+<table>
+<tbody>
+<tr class="odd">
+<td>itle: &quot;Consumer product-related injuries in the United States&quot;</td>
+</tr>
+<tr class="even">
+<td>utput: github_document</td>
+</tr>
+</tbody>
+</table>
+<div id="group-member" class="section level2">
+<h2>Group Member:</h2>
+<ul>
+<li>Lin Feng (LF2649)</li>
+<li>Eric Sun (ES3201)</li>
+<li>Elizabeth Park (EP2899)</li>
+<li>Daniel Ojeranti (DO2381)</li>
+</ul>
 </div>
+<div id="the-motivation-for-this-project" class="section level2">
+<h2>The motivation for this project</h2>
+<p>Product-related injuries does not seem to be uncommon in everyday life. Annually, these product related injuries account for approximately 29% of unintentional injury deaths. We want to investigate the product-related injuries in a relatively large scale and visualize the results in a clear and understandable way for general public, and provide a guideline for prevent further injuries in daily life.</p>
 </div>
+<div id="the-anticipated-data-sources" class="section level2">
+<h2>The anticipated data sources</h2>
+<p>We plan to use data from <a href="https://www.cpsc.gov/Research--Statistics/NEISS-Injury-Data/">National Electronic Injury Surveillance System (NEISSS)</a> to invistigate the risk of consumer product-related injuries occurring in the United States. NEISS is operated by United States Consumer Product Safety Commission (CPSC) who conducted the statistically valid injury surveillance for more than 45 years.</p>
+<p>The dataset we adopted is the NEISS data from 2013 to 2017 as &quot;injuries&quot;, together with a product code lookup table as &quot;products&quot; and the population of the US by age, sex, and year as &quot;population&quot;. The whole dataset is also available <a href="https://github.com/hadley/neiss">here</a>.</p>
+<pre class="r"><code>library(neiss)</code></pre>
+<pre class="r"><code>data(&quot;injuries&quot;)
+data(&quot;population&quot;)
+data(&quot;products&quot;)
+head(population)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##    year   age sex          n
+##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt;
+## 1  2013     0 female 1921491
+## 2  2013     0 male   2009717
+## 3  2013     1 female 1926877
+## 4  2013     1 male   2015564
+## 5  2013     2 female 1949297
+## 6  2013     2 male   2041998</code></pre>
+<pre class="r"><code>head(injuries)</code></pre>
+<pre><code>## # A tibble: 6 x 18
+##   case_num trmt_date     age sex   race  race_other body_part diag  diag_other
+##   &lt;chr&gt;    &lt;date&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     
+## 1 1301049~ 2013-01-01 57     Male  White &lt;NA&gt;       Face      Cont~ &lt;NA&gt;      
+## 2 1301049~ 2013-01-01  0.583 Fema~ Asian &lt;NA&gt;       Head      Inte~ &lt;NA&gt;      
+## 3 1301049~ 2013-01-01 59     Fema~ White &lt;NA&gt;       Lower Tr~ Cont~ &lt;NA&gt;      
+## 4 1301049~ 2013-01-01 17     Fema~ White &lt;NA&gt;       Ankle     Stra~ &lt;NA&gt;      
+## 5 1301049~ 2013-01-01 38     Male  White &lt;NA&gt;       Finger    Lace~ &lt;NA&gt;      
+## 6 1301049~ 2013-01-01 39     Fema~ White &lt;NA&gt;       Wrist     Frac~ &lt;NA&gt;      
+## # ... with 9 more variables: disposition &lt;chr&gt;, location &lt;chr&gt;, fmv &lt;chr&gt;,
+## #   prod1 &lt;dbl&gt;, prod2 &lt;dbl&gt;, stratum &lt;chr&gt;, psu &lt;dbl&gt;, weight &lt;dbl&gt;,
+## #   narrative &lt;chr&gt;</code></pre>
+<pre class="r"><code>head(products)</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##    code title                                   
+##   &lt;int&gt; &lt;chr&gt;                                   
+## 1   101 washing machines without wringers or oth
+## 2   102 wringer washing machines                
+## 3   103 washing machines with unheated spin drye
+## 4   106 electric clothes dryers without washers 
+## 5   107 gas clothes dryers without washers      
+## 6   108 mangle irons</code></pre>
+</div>
+<div id="the-intended-final-products" class="section level2">
+<h2>The intended final products</h2>
+<p>The intended final product will be a website contains the descriptive information and visualization we got from NEISS data. We plan to add some text descriptions with inline codes in the index page to show the motivation for this project, a brief introduction to the NEISS dataset, the general results of product-related injuries and other necessary information. Plots and tables will be inserted within texts to give a straight-forward display. We expect several other pages connected to the index page and will display the key results we found in more details. The linkage to NEISS website the brief introduction to group member will be added in the home page.</p>
+</div>
+<div id="the-planned-analyses-visualizations-coding-challenges" class="section level2">
+<h2>The planned analyses / visualizations / coding challenges</h2>
+<p>We will firstly import and tidy it. Then we are going to look at the distribution of injuries related to different categories of products, giving a descriptive summary of the size and structure of the dataset. After the general analysis, we will try to find some special pattern or unusual distribution within the dataset. For example, we want to know which category of product is related to the highest probability of injury, or which age range is the most vulnerable to product-related injuries.</p>
+<p>Visualization will be achieved via both general plots and interactive plots. We will choose the most appropriate plot form for each result. If applicable, we prefer interactive plot to general plot.</p>
+<p>The possible coding challenges could be connected the three datasets together for comprehensive analysis, because there is no common columns can be used for join.</p>
+</div>
+<div id="the-planned-timeline" class="section level2">
+<h2>The planned timeline</h2>
+<ul>
+<li>Nov 7, 2020. Draft proposal</li>
+<li>Nov 10-13 Project review meeting with TA</li>
+<li>Nov 16-22 Clean and analyze the data; achieve visualization and description</li>
+<li>Nov 23-Dec 4 Build website; Written report giving detailed project description</li>
+<li>Dec 10 “In class” discussion of projects © 2020 GitHub, Inc. Terms Privacy Security Status Help Contact GitHub Pricing API Training Blog About</li>
+</ul>
+</div>
+
+
+
 
 </div>
 
@@ -449,32 +454,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
